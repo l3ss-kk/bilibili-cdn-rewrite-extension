@@ -1,0 +1,7 @@
+_metadata/
+*.crx
+*.pem
+*.zip
+debug.log
+.DS_Store
+Thumbs.db

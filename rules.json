@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "priority": 100,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "transform": {
+          "host": "upos-sz-mirrorhw.bilivideo.com"
+        }
+      }
+    },
+    "condition": {
+      "urlFilter": ".m4s",
+      "requestDomains": [
+        "upos-sz-mirrorcosov.bilivideo.com"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest",
+        "media",
+        "other"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 100,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "transform": {
+          "host": "upos-sz-mirrorhw.bilivideo.com"
+        }
+      }
+    },
+    "condition": {
+      "urlFilter": ".m4s",
+      "requestDomains": [
+        "upos-hz-mirrorakam.akamaized.net"
+      ],
+      "resourceTypes": [
+        "xmlhttprequest",
+        "media",
+        "other"
+      ]
+    }
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Bilibili CDN Rewrite Test - mirrorhw",
+  "version": "0.5.0",
+  "description": "Redirect Bilibili DASH m4s requests to upos-sz-mirrorhw.bilivideo.com for testing.",
+  "permissions": [
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": [
+    "https://*.bilivideo.com/*",
+    "https://*.akamaized.net/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "bilibili_cdn_rewrite",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}
