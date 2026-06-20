@@ -1,4 +1,5 @@
 _metadata/
+dist/
 *.crx
 *.pem
 *.zip

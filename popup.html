@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>B站线路切换</title>
+    <link rel="stylesheet" href="src/popup.css">
+  </head>
+  <body>
+    <main class="popup">
+      <header class="header">
+        <h1>线路切换</h1>
+        <p>选择一条视频加载线路，当前 B 站标签页会自动刷新。</p>
+      </header>
+
+      <section class="options" id="options" aria-label="可选线路"></section>
+      <p class="status" id="status" role="status">读取当前线路...</p>
+    </main>
+
+    <script type="module" src="src/popup.js"></script>
+  </body>
+</html>

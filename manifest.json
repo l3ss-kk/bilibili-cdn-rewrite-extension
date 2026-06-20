@@ -1,22 +1,35 @@
 {
   "manifest_version": 3,
-  "name": "Bilibili CDN Rewrite Test - mirrorhw",
-  "version": "0.5.0",
-  "description": "Redirect Bilibili DASH m4s requests to upos-sz-mirrorhw.bilivideo.com for testing.",
+  "name": "解决部分 B 站视频播放卡顿",
+  "version": "0.6.0",
+  "description": "切换视频加载线路，缓解 B 站视频加载慢、频繁缓冲、播放不稳定。",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
   "permissions": [
-    "declarativeNetRequestWithHostAccess"
+    "activeTab",
+    "declarativeNetRequestWithHostAccess",
+    "storage"
   ],
   "host_permissions": [
+    "https://www.bilibili.com/*",
     "https://*.bilivideo.com/*",
     "https://*.akamaized.net/*"
-  ],
-  "declarative_net_request": {
-    "rule_resources": [
-      {
-        "id": "bilibili_cdn_rewrite",
-        "enabled": true,
-        "path": "rules.json"
-      }
-    ]
-  }
+  ]
 }

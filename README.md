@@ -1,37 +1,51 @@
-# bilibili-cdn-rewrite-extension
+# 解决部分 B 站视频播放卡顿
 
-A tiny unpacked Chrome extension for testing Bilibili `.m4s` requests against `mirrorhw`.
+对 B 站视频频繁缓冲有奇效，尤其是直播回放、长视频这种一挂就容易卡的场景。
 
-It redirects selected media requests to:
+我平时经常挂着 B 站直播回放，但有些视频总是播一会儿卡一会儿，进度条转半天也缓不过来。后来发现换一条加载线路后会稳定很多，就顺手写了这个插件。对我自己的使用场景很有用，海外用户或者网络到 B 站不太稳定的情况也可以试试。
 
-```text
-upos-sz-mirrorhw.bilivideo.com
-```
+## 适合什么情况
 
-This is only for local debugging. I used it to check whether switching a few Bilibili media requests to the `mirrorhw` host changed playback behavior.
+- 视频能打开，但播放过程中频繁缓冲
+- 直播回放、长视频容易播着播着卡住
+- 同一个视频有时流畅、有时抽风
+- 海外用户访问 B 站时默认线路不稳定
+- 想快速试试换一条加载线路会不会更顺
 
-The actual redirect rules are in `rules.json`.
+## 怎么用
 
-## Load it in Chrome
+1. 打开 `chrome://extensions/`
+2. 开启右上角的 **开发者模式**
+3. 点击 **加载已解压的扩展程序**
+4. 选择这个项目文件夹
+5. 打开或刷新 B 站视频页面
+6. 点击扩展图标，选择一条线路
 
-1. Open `chrome://extensions/`.
-2. Turn on **Developer mode**.
-3. Click **Load unpacked**.
-4. Select this project folder.
+选择线路后，如果当前标签页是 B 站页面，插件会尝试自动刷新；如果没有刷新，手动刷新一次视频页面即可。
 
-## Check whether it is working
+## 可选线路
 
-1. Open a Bilibili video.
-2. Open DevTools and switch to the **Network** tab.
-3. Filter requests with `m4s`.
-4. Open one of the matched media requests.
-5. Check that the request URL starts with:
+- `mirrorhw`
+- `mirrorali`
+- `mirroralib`
+- `mirrorhwb`
 
-```text
-https://upos-sz-mirrorhw.bilivideo.com/
-```
+我默认用的是 `mirrorhw`，它在我这里效果最好。不同网络环境下结果可能不一样，可以自己切着试。
 
-## Notes
+## 原理 / 当前规则
 
-- Disable the extension when you are done testing.
-- Chrome may generate an `_metadata/` directory after loading the extension. That folder is ignored on purpose.
+插件会把部分 B 站视频加载请求改到你选择的线路上。当前处理的来源线路包括：
+
+| 原始线路 | 可切换到 |
+| --- | --- |
+| `upos-sz-mirrorcosov.bilivideo.com` | `mirrorhw` / `mirrorali` / `mirroralib` / `mirrorhwb` |
+| `upos-hz-mirrorakam.akamaized.net` | `mirrorhw` / `mirrorali` / `mirroralib` / `mirrorhwb` |
+
+## 隐私
+
+插件只保存你选择的线路，不上传数据，不读取账号信息。
+
+## 备注
+
+- 用完测试后可以直接关闭或删除扩展。
+- Chrome 加载扩展后可能生成 `_metadata/` 目录，这个目录已经被忽略，不需要提交。
